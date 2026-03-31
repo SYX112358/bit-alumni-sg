@@ -8,12 +8,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'bit-navy': '#003366',
-        'bit-dark': '#002244',
-        'bit-red': '#8B0000',
-        'bit-gold': '#C4A35A',
+        'bit-green': '#1B5E20',
+        'bit-green-light': '#2E7D32',
+        'bit-red': '#C62828',
         'bit-brown': '#8B4513',
-        'bit-green': '#2D8B2D',
+        'bit-dark': '#14472A',
       },
     },
   },

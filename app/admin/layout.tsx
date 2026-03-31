@@ -3,19 +3,19 @@ import Link from 'next/link';
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-gray-50 flex">
-      {/* 侧边导航栏 */}
-      <aside className="w-64 bg-[#1a2332] text-white flex-shrink-0 relative">
+      {/* 侧边导航栏 - 深绿色主题 */}
+      <aside className="w-64 bg-[#14472A] text-white flex-shrink-0 relative">
         {/* Logo 区域 */}
         <div className="p-5 border-b border-white/10">
           <div className="flex items-center gap-3">
             <img
-              src="/images/bit-emblem.svg"
+              src="/images/bit-badge.png"
               alt="BIT"
               className="w-10 h-10 flex-shrink-0"
             />
             <div>
               <h2 className="text-sm font-bold leading-tight">BIT 新加坡校友会</h2>
-              <p className="text-xs text-[#C4A35A] mt-0.5">管理后台</p>
+              <p className="text-xs text-green-300/70 mt-0.5">管理后台</p>
             </div>
           </div>
         </div>
@@ -55,7 +55,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <div className="absolute bottom-0 left-0 w-64 p-4 border-t border-white/10">
           <Link
             href="/"
-            className="flex items-center gap-2 text-sm text-gray-400 hover:text-[#C4A35A] transition-colors"
+            className="flex items-center gap-2 text-sm text-white/40 hover:text-green-300 transition-colors"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
