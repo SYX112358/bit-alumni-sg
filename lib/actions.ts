@@ -40,6 +40,75 @@ export async function addAlumni(formData: FormData) {
   return { success: true };
 }
 
+export async function submitPublicAlumniRegistration(formData: FormData) {
+  const supabase = createServiceClient();
+
+  const honeypot = (formData.get('website') as string) || '';
+  if (honeypot) {
+    return { success: true };
+  }
+
+  const name = (formData.get('name') as string)?.trim();
+  const major = (formData.get('major') as string)?.trim();
+  const graduationYearRaw = formData.get('graduation_year') as string;
+  const graduation_year = parseInt(graduationYearRaw, 10);
+  const phone = ((formData.get('phone') as string) || '').trim() || null;
+  const email = ((formData.get('email') as string) || '').trim().toLowerCase() || null;
+
+  if (!name || !major || !graduationYearRaw || !email) {
+    return { error: '姓名、专业、毕业年份和邮箱为必填项。' };
+  }
+
+  const currentYear = new Date().getFullYear() + 1;
+  if (Number.isNaN(graduation_year) || graduation_year < 1940 || graduation_year > currentYear) {
+    return { error: '请填写有效的毕业年份。' };
+  }
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email)) {
+    return { error: '请填写有效的邮箱地址。' };
+  }
+
+  const { data: existingByEmail } = await supabase
+    .from('alumni')
+    .select('id')
+    .eq('email', email)
+    .maybeSingle();
+
+  if (existingByEmail) {
+    return { error: '这个邮箱已经登记过了，如需更新资料请联系管理员。' };
+  }
+
+  const { data: existingByName } = await supabase
+    .from('alumni')
+    .select('id')
+    .eq('name', name)
+    .eq('graduation_year', graduation_year)
+    .maybeSingle();
+
+  if (existingByName) {
+    return { error: '系统中已存在相同姓名和毕业年份的校友记录，请联系管理员核对。' };
+  }
+
+  const { error } = await supabase.from('alumni').insert({
+    name,
+    major,
+    graduation_year,
+    phone,
+    email,
+    status: '普通校友' as AlumniStatus,
+  });
+
+  if (error) {
+    return { error: `登记失败: ${error.message}` };
+  }
+
+  revalidatePath('/');
+  revalidatePath('/admin/alumni');
+  revalidatePath('/admin/dashboard');
+  return { success: true };
+}
+
 // ============================================================
 // 财务录入 + 会员状态联动 (核心业务逻辑)
 // ============================================================

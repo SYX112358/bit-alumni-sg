@@ -3,14 +3,37 @@
 @tailwind utilities;
 
 :root {
-  /* 北京理工大学主色调 */
-  --bit-navy: #003366;
-  --bit-dark-navy: #002244;
-  --bit-red: #8B0000;
-  --bit-gold: #C4A35A;
+  --font-sans: 'Avenir Next', 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-display: 'Iowan Old Style', 'Palatino Linotype', 'Songti SC', 'STSong', serif;
+  --bit-ivory: #f5f2ea;
+  --bit-paper: #fcfaf5;
+  --bit-surface: #ffffff;
+  --bit-ink: #172217;
+  --bit-muted: #5c675d;
+  --bit-line: rgba(18, 58, 36, 0.12);
+  --bit-forest: #123a24;
+  --bit-forest-strong: #0d2a1a;
+  --bit-brick: #8d3f2f;
+  --bit-gold: #b58c57;
+  --bit-shadow: 0 24px 70px rgba(18, 58, 36, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
-    'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(181, 140, 87, 0.08), transparent 30%),
+    linear-gradient(180deg, #fcfaf5 0%, #f5f2ea 100%);
+  color: var(--bit-ink);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(18, 58, 36, 0.16);
+  color: var(--bit-ink);
 }

@@ -33,7 +33,7 @@ export default async function DashboardPage() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">会员校友数</p>
-              <p className="text-3xl font-bold text-[#1B5E20] mt-2">{stats.memberAlumni}</p>
+              <p className="mt-2 text-3xl font-bold text-[var(--bit-forest)]">{stats.memberAlumni}</p>
             </div>
             <div className="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center">
               <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -49,7 +49,7 @@ export default async function DashboardPage() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">历史捐款总额</p>
-              <p className="text-3xl font-bold text-[#C62828] mt-2">
+              <p className="mt-2 text-3xl font-bold text-[var(--bit-brick)]">
                 S${stats.totalDonation.toLocaleString('en-US', { minimumFractionDigits: 2 })}
               </p>
             </div>

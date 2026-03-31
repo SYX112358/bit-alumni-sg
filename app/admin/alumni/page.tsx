@@ -48,7 +48,7 @@ export default function AlumniPage() {
         <h1 className="text-2xl font-bold text-gray-900">校友名册</h1>
         <button
           onClick={() => setShowModal(true)}
-          className="px-4 py-2 bg-[#003366] text-white rounded-lg text-sm font-medium hover:bg-[#002244] transition-colors"
+          className="rounded-lg bg-[var(--bit-forest)] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[var(--bit-forest-strong)]"
         >
           + 添加新校友
         </button>
@@ -73,7 +73,7 @@ export default function AlumniPage() {
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
             placeholder="按姓名搜索校友..."
-            className="flex-1 px-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#003366]/20 focus:border-[#003366]"
+            className="flex-1 rounded-lg border border-gray-200 px-4 py-2 text-sm focus:border-[var(--bit-forest)] focus:outline-none focus:ring-2 focus:ring-[color:rgba(18,58,36,0.14)]"
           />
           <button
             type="submit"
@@ -147,23 +147,23 @@ export default function AlumniPage() {
             <form action={handleAdd} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">姓名 *</label>
-                <input name="name" required className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#003366]/20 focus:border-[#003366]" />
+                <input name="name" required className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-[var(--bit-forest)] focus:outline-none focus:ring-2 focus:ring-[color:rgba(18,58,36,0.14)]" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">专业 *</label>
-                <input name="major" required className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#003366]/20 focus:border-[#003366]" />
+                <input name="major" required className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-[var(--bit-forest)] focus:outline-none focus:ring-2 focus:ring-[color:rgba(18,58,36,0.14)]" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">毕业年份 *</label>
-                <input name="graduation_year" type="number" min="1940" max="2100" required className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#003366]/20 focus:border-[#003366]" />
+                <input name="graduation_year" type="number" min="1940" max="2100" required className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-[var(--bit-forest)] focus:outline-none focus:ring-2 focus:ring-[color:rgba(18,58,36,0.14)]" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">联系电话</label>
-                <input name="phone" type="tel" className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#003366]/20 focus:border-[#003366]" />
+                <input name="phone" type="tel" className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-[var(--bit-forest)] focus:outline-none focus:ring-2 focus:ring-[color:rgba(18,58,36,0.14)]" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">邮箱</label>
-                <input name="email" type="email" className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#003366]/20 focus:border-[#003366]" />
+                <input name="email" type="email" className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-[var(--bit-forest)] focus:outline-none focus:ring-2 focus:ring-[color:rgba(18,58,36,0.14)]" />
               </div>
               <div className="flex gap-3 pt-2">
                 <button
@@ -175,7 +175,7 @@ export default function AlumniPage() {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-4 py-2 bg-[#003366] text-white rounded-lg text-sm font-medium hover:bg-[#002244] transition-colors"
+                  className="flex-1 rounded-lg bg-[var(--bit-forest)] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[var(--bit-forest-strong)]"
                 >
                   确认添加
                 </button>

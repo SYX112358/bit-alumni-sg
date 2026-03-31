@@ -1,327 +1,566 @@
+import Image from 'next/image';
 import Link from 'next/link';
+import { PublicJoinForm } from '@/components/site/public-join-form';
+
+const credibility = [
+  {
+    label: '学校视角',
+    value: '一套可交付、可维护、可继续扩展的校友会官网框架。',
+  },
+  {
+    label: '校友视角',
+    value: '公开登记、活动浏览与联络入口已经具备可直接使用的闭环。',
+  },
+  {
+    label: '运营视角',
+    value: '前台展示与后台名册联动，便于后续持续运营与数据建档。',
+  },
+];
+
+const serviceAreas = [
+  {
+    name: '校友联络',
+    title: '让在新北理校友彼此找到彼此',
+    description:
+      '以活动通知、日常联络与信息建档为基础，让新老校友在抵达新加坡之后都能快速接入同一张网络。',
+  },
+  {
+    name: '职业发展',
+    title: '把经验、机会与行业资源串起来',
+    description:
+      '围绕半导体、人工智能、金融与制造业等方向，建立分享会、职业互荐和项目协作的常态机制。',
+  },
+  {
+    name: '校地合作',
+    title: '把母校能力延展到新加坡现场',
+    description:
+      '促进母校、校友企业与新加坡产业生态之间的长期合作，让校友会成为可信赖的连接界面。',
+  },
+  {
+    name: '社区支持',
+    title: '让活动不只停留在节庆合影',
+    description:
+      '通过家庭友好型活动、志愿服务与城市生活互助，让校友会真正成为在地社区的一部分。',
+  },
+];
+
+const deliveryHighlights = [
+  {
+    title: '品牌表达更稳',
+    description:
+      '校徽、校名和校园照片都回到更合适的位置，不再把低分辨率 LOGO 强行叠在复杂背景上。',
+  },
+  {
+    title: '信息结构更清楚',
+    description:
+      '把“我们是谁、能做什么、如何加入、如何联络”拆成独立而成熟的机构信息层，降低理解成本。',
+  },
+  {
+    title: '使用闭环已打通',
+    description:
+      '校友可直接提交登记，后台可即时接收资料并进入既有名册系统，不需要再靠线下转发和手工整理。',
+  },
+];
+
+const serviceWorkflow = [
+  {
+    step: '01',
+    title: '校友提交基础资料',
+    description: '在线填写姓名、专业、毕业年份和联系方式，进入校友会后台名册。',
+  },
+  {
+    step: '02',
+    title: '后台整理与建立联络',
+    description: '管理员在后台查看新登记校友，后续可进行校友联络、活动通知和名册维护。',
+  },
+  {
+    step: '03',
+    title: '参与活动与社区建设',
+    description: '校友逐步进入讲座、聚会、互助、志愿者和校地合作等长期活动场景。',
+  },
+];
+
+const eventPlan = [
+  {
+    time: '2026年4月',
+    place: 'Marina Bay',
+    title: '春季校友见面会',
+    detail: '以线下联络和新加坡生活经验分享为主，适合新抵新校友和长期在新校友共同参与。',
+  },
+  {
+    time: '2026年5月',
+    place: 'Zoom 线上',
+    title: 'AI 与先进制造主题分享',
+    detail: '围绕行业趋势、岗位变化与校友经验，形成更稳定的专业交流机制。',
+  },
+  {
+    time: '2026年6月',
+    place: 'Kallang',
+    title: '端午节主题联谊',
+    detail: '结合家庭友好型活动和节庆文化，提升校友会的参与感和在地温度。',
+  },
+];
+
+function SectionHeading({
+  eyebrow,
+  title,
+  description,
+}: {
+  eyebrow: string;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="max-w-3xl">
+      <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--bit-brick)]">
+        {eyebrow}
+      </p>
+      <h2 className="mt-4 font-[family:var(--font-display)] text-4xl font-semibold tracking-tight text-[var(--bit-ink)] md:text-5xl">
+        {title}
+      </h2>
+      <p className="mt-5 text-base leading-8 text-[var(--bit-muted)]">{description}</p>
+    </div>
+  );
+}
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* ========== 顶部导航栏 ========== */}
-      <header className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
-            <img src="/images/bit-badge.png" alt="BIT" className="w-10 h-10" />
-            <div className="flex flex-col">
-              <span className="text-[#1B5E20] font-bold text-sm md:text-base leading-tight">
+    <div className="min-h-screen bg-[var(--bit-ivory)] text-[var(--bit-ink)]">
+      <header className="sticky top-0 z-50 border-b border-[var(--bit-line)] bg-[color:rgba(252,250,245,0.92)] backdrop-blur-xl">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 md:px-8">
+          <Link href="/" className="flex min-w-0 items-center gap-3">
+            <div className="rounded-full border border-[var(--bit-line)] bg-white p-1.5 shadow-sm">
+              <Image
+                src="/images/bit-badge.png"
+                alt="北京理工大学校徽"
+                width={44}
+                height={44}
+                unoptimized
+                className="h-11 w-11"
+              />
+            </div>
+            <div className="min-w-0">
+              <p className="truncate text-sm font-semibold text-[var(--bit-ink)] md:text-base">
                 北京理工大学新加坡校友会
-              </span>
-              <span className="text-[#C62828] text-[10px] leading-tight tracking-wider hidden sm:block">
-                BIT Singapore Alumni Association
-              </span>
+              </p>
+              <p className="hidden text-xs tracking-[0.24em] text-[var(--bit-muted)] sm:block">
+                BIT SINGAPORE ALUMNI ASSOCIATION
+              </p>
             </div>
           </Link>
-          <nav className="hidden md:flex items-center gap-8">
-            <a href="#about" className="text-gray-500 text-sm hover:text-[#1B5E20] transition-colors">关于我们</a>
-            <a href="#bridge" className="text-gray-500 text-sm hover:text-[#1B5E20] transition-colors">双城桥梁</a>
-            <a href="#events" className="text-gray-500 text-sm hover:text-[#1B5E20] transition-colors">近期活动</a>
-            <a href="#contact" className="text-gray-500 text-sm hover:text-[#1B5E20] transition-colors">联系方式</a>
-          </nav>
+
+          <div className="flex items-center gap-3">
+            <nav className="hidden items-center gap-7 text-sm text-[var(--bit-muted)] xl:flex">
+              <a href="#positioning" className="transition-colors hover:text-[var(--bit-forest)]">
+                校友会定位
+              </a>
+              <a href="#services" className="transition-colors hover:text-[var(--bit-forest)]">
+                服务体系
+              </a>
+              <a href="#events" className="transition-colors hover:text-[var(--bit-forest)]">
+                活动计划
+              </a>
+              <a href="#join" className="transition-colors hover:text-[var(--bit-forest)]">
+                校友登记
+              </a>
+            </nav>
+            <a
+              href="#join"
+              className="rounded-full bg-[var(--bit-forest)] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[var(--bit-forest-strong)]"
+            >
+              校友登记
+            </a>
+          </div>
         </div>
       </header>
 
-      {/* ========== Hero - 新加坡夜景做背景 ========== */}
-      <section className="relative pt-16 min-h-[100vh] flex items-center overflow-hidden">
-        {/* 夜景背景图 */}
-        <div className="absolute inset-0">
-          <img
-            src="/images/sg-night.jpg"
-            alt="Singapore skyline"
-            className="w-full h-full object-cover"
-          />
-          {/* 深色遮罩让文字可读 */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-[#1B5E20]/80" />
-        </div>
+      <main>
+        <section className="relative overflow-hidden">
+          <div className="absolute inset-x-0 top-0 h-[560px] bg-[radial-gradient(circle_at_top_left,rgba(181,140,87,0.18),transparent_52%),radial-gradient(circle_at_right,rgba(18,58,36,0.14),transparent_46%)]" />
+          <div className="mx-auto max-w-7xl px-6 pb-20 pt-14 md:px-8 lg:pb-24">
+            <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.02fr)_minmax(0,0.98fr)]">
+              <div>
+                <div className="inline-flex rounded-full border border-[var(--bit-line)] bg-white/88 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[var(--bit-forest)] shadow-sm">
+                  Institutional Website Refresh
+                </div>
 
-        <div className="relative max-w-6xl mx-auto px-6 py-12 w-full">
-          <div className="flex flex-col items-center text-center">
-            {/* 横版 LOGO */}
-            <img src="/images/bit-logo.png" alt="北京理工大学" className="h-10 md:h-12 mb-8 object-contain brightness-200 drop-shadow-lg" />
+                <div className="mt-6 inline-flex rounded-[30px] border border-[var(--bit-line)] bg-white px-5 py-4 shadow-[var(--bit-shadow)]">
+                  <Image
+                    src="/images/bit-logo.png"
+                    alt="北京理工大学校名 LOGO"
+                    width={220}
+                    height={160}
+                    unoptimized
+                    priority
+                    className="h-auto w-[180px] sm:w-[220px]"
+                  />
+                </div>
 
-            {/* 校徽 */}
-            <div className="relative mb-6">
-              <div className="absolute -inset-3 rounded-full bg-white/10 backdrop-blur-sm" />
-              <img src="/images/bit-badge.png" alt="北京理工大学校徽" className="relative w-28 h-28 md:w-36 md:h-36 drop-shadow-2xl" />
-            </div>
-
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-2 tracking-tight drop-shadow-lg">
-              新加坡校友会
-            </h1>
-            <p className="text-sm md:text-base text-white/60 mb-8 tracking-widest uppercase">
-              Singapore Alumni Association
-            </p>
-
-            {/* 校训 */}
-            <div className="mb-8">
-              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-10 py-5">
-                <p className="text-xl md:text-2xl font-bold text-white tracking-[0.3em] drop-shadow">
-                  德以明理 &nbsp; 学以精工
+                <h1 className="mt-8 max-w-4xl font-[family:var(--font-display)] text-5xl font-semibold tracking-tight text-[var(--bit-ink)] md:text-7xl">
+                  一套可以交付给学校，也能让校友立刻开始使用的校友会官网。
+                </h1>
+                <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--bit-muted)]">
+                  这一版不再只是“展示页面”，而是以正式机构网站的标准重新组织品牌、信息和使用流程，让北京理工大学新加坡校友会在学校视角与校友视角下都足够成熟、可信且可持续。
                 </p>
-                <p className="text-xs text-white/50 mt-2 tracking-wider">
-                  Virtue for Understanding Principles, Learning for Excellent Engineering
+
+                <div className="mt-8 flex flex-wrap gap-4">
+                  <a
+                    href="#positioning"
+                    className="rounded-full bg-[var(--bit-forest)] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[color:rgba(18,58,36,0.18)] transition-transform hover:-translate-y-0.5 hover:bg-[var(--bit-forest-strong)]"
+                  >
+                    查看整体方案
+                  </a>
+                  <a
+                    href="#join"
+                    className="rounded-full border border-[var(--bit-line)] bg-white px-6 py-3 text-sm font-semibold text-[var(--bit-ink)] transition-colors hover:border-[var(--bit-brick)] hover:text-[var(--bit-brick)]"
+                  >
+                    立即登记校友资料
+                  </a>
+                </div>
+
+                <div className="mt-10 grid gap-4 md:grid-cols-3">
+                  {credibility.map((item) => (
+                    <div
+                      key={item.label}
+                      className="rounded-[28px] border border-[var(--bit-line)] bg-white/88 p-5 shadow-sm"
+                    >
+                      <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--bit-brick)]">
+                        {item.label}
+                      </p>
+                      <p className="mt-3 text-sm leading-7 text-[var(--bit-muted)]">{item.value}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="relative">
+                <div className="absolute -left-8 top-12 hidden h-36 w-36 rounded-full bg-[color:rgba(181,140,87,0.18)] blur-3xl lg:block" />
+                <div className="absolute -right-10 bottom-16 hidden h-40 w-40 rounded-full bg-[color:rgba(18,58,36,0.16)] blur-3xl lg:block" />
+
+                <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_188px]">
+                  <div className="overflow-hidden rounded-[36px] border border-[var(--bit-line)] bg-white shadow-[0_40px_90px_rgba(18,58,36,0.14)]">
+                    <div className="relative aspect-[5/6] sm:aspect-[4/3] lg:aspect-[5/6]">
+                      <Image
+                        src="/images/sg-night.jpg"
+                        alt="新加坡城市天际线"
+                        fill
+                        priority
+                        quality={95}
+                        sizes="(min-width: 1024px) 36vw, 100vw"
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="absolute inset-x-6 bottom-6 rounded-[28px] border border-white/12 bg-[color:rgba(9,23,15,0.74)] p-5 text-white backdrop-blur-md">
+                      <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/55">
+                        Singapore Chapter
+                      </p>
+                      <h2 className="mt-3 text-2xl font-semibold md:text-3xl">
+                        用更清晰的品牌层与更成熟的服务层，重建校友会官网。
+                      </h2>
+                      <p className="mt-3 text-sm leading-7 text-white/72">
+                        城市照片负责建立真实氛围，校名与校徽回归干净的信息层，机构表达因此更稳、更正式。
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-5">
+                    <div className="rounded-[30px] border border-[var(--bit-line)] bg-white p-5 shadow-sm">
+                      <Image
+                        src="/images/bit-badge.png"
+                        alt="北京理工大学校徽"
+                        width={92}
+                        height={92}
+                        unoptimized
+                        className="h-20 w-20"
+                      />
+                      <p className="mt-4 text-xs font-semibold uppercase tracking-[0.28em] text-[var(--bit-brick)]">
+                        Brand Layer
+                      </p>
+                      <p className="mt-3 text-sm leading-7 text-[var(--bit-muted)]">
+                        校徽与校名不再被背景吞没，学校识别更稳定，也更适合正式场景。
+                      </p>
+                    </div>
+
+                    <div className="overflow-hidden rounded-[30px] border border-[var(--bit-line)] bg-white shadow-sm">
+                      <div className="relative aspect-[4/5]">
+                        <Image
+                          src="/images/bit-gate.jpg"
+                          alt="北京理工大学校门"
+                          fill
+                          quality={95}
+                          sizes="188px"
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="border-t border-[var(--bit-line)] bg-[var(--bit-paper)] p-4">
+                        <p className="text-sm leading-7 text-[var(--bit-muted)]">
+                          从母校出发，在新加坡建立一个长期有效的校友连接点。
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="positioning" className="border-y border-[var(--bit-line)] bg-[color:rgba(255,255,255,0.8)] py-20">
+          <div className="mx-auto max-w-7xl px-6 md:px-8">
+            <SectionHeading
+              eyebrow="Positioning"
+              title="把校友会从一张海报式首页，升级成一个真正可运营的机构界面。"
+              description="学校需要的是一个可被交付、可被延续、可被管理的正式站点；校友需要的是清楚的定位、真实的入口和可信赖的联络方式。这一版把两者放在同一个设计逻辑里。"
+            />
+
+            <div className="mt-12 grid gap-6 lg:grid-cols-[minmax(0,1.06fr)_minmax(0,0.94fr)]">
+              <div className="grid gap-5 md:grid-cols-3">
+                {deliveryHighlights.map((item) => (
+                  <div
+                    key={item.title}
+                    className="rounded-[30px] border border-[var(--bit-line)] bg-[var(--bit-paper)] p-6 shadow-sm"
+                  >
+                    <div className="h-1.5 w-14 rounded-full bg-[var(--bit-brick)]" />
+                    <h3 className="mt-5 text-2xl font-semibold text-[var(--bit-ink)]">{item.title}</h3>
+                    <p className="mt-4 text-sm leading-7 text-[var(--bit-muted)]">{item.description}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="rounded-[34px] border border-[var(--bit-line)] bg-white p-7 shadow-[var(--bit-shadow)] md:p-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--bit-brick)]">
+                  Delivery Notes
                 </p>
+                <h3 className="mt-5 font-[family:var(--font-display)] text-3xl font-semibold leading-tight text-[var(--bit-ink)]">
+                  面向学校交付，最重要的是专业度、秩序感和后续可扩展性。
+                </h3>
+                <div className="mt-6 space-y-4 text-sm leading-7 text-[var(--bit-muted)]">
+                  <p>
+                    这次设计不依赖夸张动效，也不依赖花哨背景来制造“高级感”，而是通过信息分层、材质关系、品牌秩序和可用性来建立正式网站应有的成熟度。
+                  </p>
+                  <p>
+                    同时保留了轻量技术栈与现有后台，让未来继续增加活动页、理事会介绍、合作案例和更多校友服务时，不需要推翻重来。
+                  </p>
+                </div>
+                <div className="mt-8 grid gap-4 md:grid-cols-2">
+                  <div className="rounded-[24px] bg-[color:rgba(18,58,36,0.05)] p-5">
+                    <p className="text-sm font-semibold text-[var(--bit-ink)]">学校可见价值</p>
+                    <p className="mt-2 text-sm leading-7 text-[var(--bit-muted)]">
+                      品牌统一、机构定位清楚、后续扩展和移交成本低。
+                    </p>
+                  </div>
+                  <div className="rounded-[24px] bg-[color:rgba(141,63,47,0.06)] p-5">
+                    <p className="text-sm font-semibold text-[var(--bit-ink)]">校友可见价值</p>
+                    <p className="mt-2 text-sm leading-7 text-[var(--bit-muted)]">
+                      入口清晰、登记可用、活动明确、联系路径稳定。
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+        </section>
 
-            <p className="text-white/50 text-sm max-w-md leading-relaxed mb-10">
-              汇聚狮城北理人，传承延安精神，共创美好未来
+        <section id="services" className="py-20">
+          <div className="mx-auto max-w-7xl px-6 md:px-8">
+            <SectionHeading
+              eyebrow="Service System"
+              title="校友会不只是联谊，它需要一个可持续运作的服务体系。"
+              description="围绕联络、职业、合作和社区四条主线来组织内容，能让校友理解校友会存在的意义，也让学校更容易判断它未来的成长方向。"
+            />
+
+            <div className="mt-12 grid gap-5 lg:grid-cols-2">
+              {serviceAreas.map((item, index) => (
+                <div
+                  key={item.title}
+                  className="rounded-[32px] border border-[var(--bit-line)] bg-white p-6 shadow-sm md:p-7"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-[color:rgba(18,58,36,0.08)] text-lg font-semibold text-[var(--bit-forest)]">
+                      0{index + 1}
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--bit-brick)]">
+                        {item.name}
+                      </p>
+                      <h3 className="mt-3 text-2xl font-semibold text-[var(--bit-ink)]">{item.title}</h3>
+                      <p className="mt-4 text-sm leading-7 text-[var(--bit-muted)]">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 grid gap-5 lg:grid-cols-[220px_minmax(0,1fr)_260px]">
+              <div className="overflow-hidden rounded-[30px] border border-[var(--bit-line)] bg-white shadow-sm">
+                <div className="relative aspect-[4/5]">
+                  <Image
+                    src="/images/bit-stadium.jpg"
+                    alt="北京理工大学校园"
+                    fill
+                    quality={95}
+                    sizes="220px"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+
+              <div className="rounded-[32px] border border-[var(--bit-line)] bg-[var(--bit-paper)] p-7 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--bit-brick)]">
+                  Operating Principle
+                </p>
+                <h3 className="mt-5 font-[family:var(--font-display)] text-3xl font-semibold text-[var(--bit-ink)]">
+                  先把基础连接打稳，再逐步叠加更丰富的校友服务。
+                </h3>
+                <div className="mt-6 space-y-4 text-sm leading-7 text-[var(--bit-muted)]">
+                  <p>第一阶段先让官网成为统一入口，解决“去哪里找组织、怎么登记、怎么联系”的基础问题。</p>
+                  <p>第二阶段再逐步扩展活动专题页、理事会介绍、项目合作入口和更完整的校友数据库管理。</p>
+                </div>
+              </div>
+
+              <div className="overflow-hidden rounded-[30px] border border-[var(--bit-line)] bg-white shadow-sm">
+                <div className="relative aspect-[4/5]">
+                  <Image
+                    src="/images/sg-merlion.jpg"
+                    alt="新加坡鱼尾狮"
+                    fill
+                    quality={95}
+                    sizes="260px"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="events" className="border-y border-[var(--bit-line)] bg-[color:rgba(255,255,255,0.82)] py-20">
+          <div className="mx-auto max-w-7xl px-6 md:px-8">
+            <SectionHeading
+              eyebrow="Events & Workflow"
+              title="活动计划与加入流程同时清楚，网站才能真正开始被使用。"
+              description="把活动安排和校友登记流程放在同一段落里，是为了让来访者不只浏览，还能直接行动。"
+            />
+
+            <div className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,1.04fr)_minmax(0,0.96fr)]">
+              <div className="space-y-5">
+                {eventPlan.map((event, index) => (
+                  <div
+                    key={event.title}
+                    className="rounded-[30px] border border-[var(--bit-line)] bg-white p-6 shadow-sm"
+                  >
+                    <div className="flex flex-wrap items-center justify-between gap-4">
+                      <span className="rounded-full bg-[color:rgba(18,58,36,0.08)] px-3 py-1 text-xs font-semibold text-[var(--bit-forest)]">
+                        {event.time}
+                      </span>
+                      <span className="text-sm text-[var(--bit-muted)]">{event.place}</span>
+                    </div>
+                    <div className="mt-6 flex items-start gap-4">
+                      <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-2xl bg-[color:rgba(141,63,47,0.08)] text-lg font-semibold text-[var(--bit-brick)]">
+                        0{index + 1}
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-semibold text-[var(--bit-ink)]">{event.title}</h3>
+                        <p className="mt-3 text-sm leading-7 text-[var(--bit-muted)]">{event.detail}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="rounded-[34px] border border-[var(--bit-line)] bg-[var(--bit-paper)] p-7 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--bit-brick)]">
+                  Join Workflow
+                </p>
+                <h3 className="mt-5 font-[family:var(--font-display)] text-3xl font-semibold leading-tight text-[var(--bit-ink)]">
+                  一条足够轻、但已经能运转起来的校友登记路径。
+                </h3>
+                <div className="mt-7 space-y-5">
+                  {serviceWorkflow.map((item) => (
+                    <div
+                      key={item.step}
+                      className="rounded-[26px] border border-[var(--bit-line)] bg-white p-5"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="text-sm font-semibold text-[var(--bit-brick)]">{item.step}</div>
+                        <div>
+                          <p className="text-lg font-semibold text-[var(--bit-ink)]">{item.title}</p>
+                          <p className="mt-2 text-sm leading-7 text-[var(--bit-muted)]">
+                            {item.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-7 rounded-[26px] bg-[color:rgba(18,58,36,0.06)] px-5 py-4 text-sm leading-7 text-[var(--bit-muted)]">
+                  这一流程依托现有后台名册系统实现，意味着网站不是“展示完就结束”，而是可以真实承接第一批校友使用。
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="join" className="py-20">
+          <div className="mx-auto max-w-7xl px-6 md:px-8">
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+              <div>
+                <SectionHeading
+                  eyebrow="Registration"
+                  title="现在，校友已经可以开始使用这个网站。"
+                  description="这里不只是一个联系方式展示区，而是一个已经接通后台名册的公开登记入口。对于刚起步的校友会来说，这比“做很多功能但没人用”更实际，也更专业。"
+                />
+
+                <div className="mt-8 space-y-5">
+                  <div className="rounded-[30px] border border-[var(--bit-line)] bg-white p-6 shadow-sm">
+                    <p className="text-lg font-semibold text-[var(--bit-ink)]">适合当前阶段的原因</p>
+                    <ul className="mt-4 space-y-3 text-sm leading-7 text-[var(--bit-muted)]">
+                      <li>资料项足够精简，降低填写阻力，便于第一批校友尽快开始登记。</li>
+                      <li>后台已有名册系统承接，不需要再引入额外平台或复杂审批链。</li>
+                      <li>后续可继续扩展为更完整的校友申请、活动报名和分组联络系统。</li>
+                    </ul>
+                  </div>
+
+                  <div className="rounded-[30px] border border-[var(--bit-line)] bg-[var(--bit-paper)] p-6 shadow-sm">
+                    <p className="text-lg font-semibold text-[var(--bit-ink)]">建议的后续迭代</p>
+                    <ul className="mt-4 space-y-3 text-sm leading-7 text-[var(--bit-muted)]">
+                      <li>增加理事会与工作小组介绍页，提升组织公信力。</li>
+                      <li>增加活动专题页与图文回顾，沉淀校友会年度成果。</li>
+                      <li>根据真实运营情况再扩展更细的校友标签与行业分组。</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <PublicJoinForm />
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="border-t border-[var(--bit-line)] bg-[color:rgba(255,255,255,0.8)] py-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 text-center md:flex-row md:items-center md:justify-between md:px-8 md:text-left">
+          <div className="flex items-center justify-center gap-3 md:justify-start">
+            <Image
+              src="/images/bit-badge.png"
+              alt="北京理工大学校徽"
+              width={28}
+              height={28}
+              unoptimized
+              className="h-7 w-7"
+            />
+            <p className="text-sm text-[var(--bit-muted)]">
+              &copy; {new Date().getFullYear()} 北京理工大学新加坡校友会 · BIT Singapore Alumni Association
             </p>
-
-            {/* 三指标 */}
-            <div className="flex items-center gap-6 md:gap-10">
-              <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-white drop-shadow">1940</div>
-                <div className="text-[10px] text-white/40 mt-1 tracking-wider">延安建校</div>
-              </div>
-              <div className="w-px h-10 bg-white/20" />
-              <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-white drop-shadow">985</div>
-                <div className="text-[10px] text-white/40 mt-1 tracking-wider">双一流高校</div>
-              </div>
-              <div className="w-px h-10 bg-white/20" />
-              <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-white drop-shadow">SG</div>
-                <div className="text-[10px] text-white/40 mt-1 tracking-wider">Lion City</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* 底部渐变过渡 */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent" />
-      </section>
-
-      {/* ========== 关于我们 - BIT校门照片 ========== */}
-      <section id="about" className="py-20 bg-white">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <p className="text-xs font-medium text-[#1B5E20] uppercase tracking-[0.3em] mb-3">About Us</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">关于校友会</h2>
-            <div className="mt-4 mx-auto w-12 h-1 bg-[#1B5E20] rounded-full" />
           </div>
 
-          <div className="grid md:grid-cols-2 gap-10 items-center">
-            {/* 左侧：BIT校门照片 */}
-            <div className="relative rounded-2xl overflow-hidden shadow-xl group">
-              <img
-                src="/images/bit-gate.jpg"
-                alt="北京理工大学校门"
-                className="w-full h-[320px] object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-              <div className="absolute bottom-4 left-5 right-5">
-                <p className="text-white font-bold text-lg drop-shadow">北京理工大学</p>
-                <p className="text-white/70 text-xs">Beijing Institute of Technology · Est. 1940</p>
-              </div>
-            </div>
-
-            {/* 右侧：介绍文字 */}
-            <div>
-              <p className="text-gray-600 leading-[1.9] mb-5 text-[15px]">
-                北京理工大学新加坡校友会（BIT Singapore Alumni Association）是由在新加坡工作、生活、求学的北京理工大学校友自愿组成的非营利社团组织。
-              </p>
-              <p className="text-gray-600 leading-[1.9] mb-5 text-[15px]">
-                校友会致力于促进在新校友之间的联络与交流，增进友谊与合作，为校友在新加坡的事业发展和生活提供互助平台，同时积极推动母校与新加坡各界的学术与产业合作。
-              </p>
-              <p className="text-gray-600 leading-[1.9] text-[15px]">
-                我们定期组织学术讲座、文体活动、节日聚会和职业发展论坛等丰富多彩的活动，凝聚北理力量，服务狮城校友。
-              </p>
-
-              <div className="mt-8 grid grid-cols-3 gap-3">
-                <div className="bg-[#1B5E20]/5 rounded-xl p-4 text-center">
-                  <div className="text-2xl font-bold text-[#1B5E20]">1940</div>
-                  <div className="text-[10px] text-gray-500 mt-1">延安建校</div>
-                </div>
-                <div className="bg-[#C62828]/5 rounded-xl p-4 text-center">
-                  <div className="text-2xl font-bold text-[#C62828]">985</div>
-                  <div className="text-[10px] text-gray-500 mt-1">双一流高校</div>
-                </div>
-                <div className="bg-[#8B4513]/5 rounded-xl p-4 text-center">
-                  <div className="text-2xl font-bold text-[#8B4513]">延安</div>
-                  <div className="text-[10px] text-gray-500 mt-1">红色基因</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========== 北京 × 新加坡 双城桥梁 ========== */}
-      <section id="bridge" className="py-20 bg-[#FAFDF7]">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <p className="text-xs font-medium text-[#C62828] uppercase tracking-[0.3em] mb-3">Beijing × Singapore</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">双城桥梁</h2>
-            <div className="mt-4 mx-auto w-12 h-1 bg-[#C62828] rounded-full" />
-          </div>
-
-          {/* 双城照片对比 */}
-          <div className="grid md:grid-cols-2 gap-6 mb-14">
-            <div className="relative rounded-2xl overflow-hidden shadow-lg group h-[240px]">
-              <img
-                src="/images/bit-stadium.jpg"
-                alt="北京理工大学体育馆"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#C62828]/70 to-transparent" />
-              <div className="absolute bottom-4 left-5 flex items-center gap-2">
-                <span className="text-2xl">🇨🇳</span>
-                <div>
-                  <p className="text-white font-bold drop-shadow">北京</p>
-                  <p className="text-white/70 text-xs">Beijing Institute of Technology</p>
-                </div>
-              </div>
-            </div>
-            <div className="relative rounded-2xl overflow-hidden shadow-lg group h-[240px]">
-              <img
-                src="/images/sg-merlion.jpg"
-                alt="新加坡鱼尾狮"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1B5E20]/70 to-transparent" />
-              <div className="absolute bottom-4 left-5 flex items-center gap-2">
-                <span className="text-2xl">🇸🇬</span>
-                <div>
-                  <p className="text-white font-bold drop-shadow">新加坡</p>
-                  <p className="text-white/70 text-xs">The Lion City · Singapore</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* 三项合作 */}
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center group">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[#1B5E20]/5 flex items-center justify-center group-hover:bg-[#1B5E20]/10 transition-colors">
-                <svg className="w-8 h-8 text-[#1B5E20]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">学术交流</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">连接北理工科研实力与新加坡创新生态，促进两地学术合作与人才流通</p>
-            </div>
-            <div className="text-center group">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[#C62828]/5 flex items-center justify-center group-hover:bg-[#C62828]/10 transition-colors">
-                <svg className="w-8 h-8 text-[#C62828]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">产业合作</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">对接新加坡半导体、AI、金融等优势产业，助力校友创业与职业发展</p>
-            </div>
-            <div className="text-center group">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[#8B4513]/5 flex items-center justify-center group-hover:bg-[#8B4513]/10 transition-colors">
-                <svg className="w-8 h-8 text-[#8B4513]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">文化纽带</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">在多元文化的狮城传承延安精神，组织节日庆祝、文体赛事与家庭聚会</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========== 近期活动预告 ========== */}
-      <section id="events" className="py-20 bg-white">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <p className="text-xs font-medium text-[#1B5E20] uppercase tracking-[0.3em] mb-3">Upcoming Events</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">近期活动预告</h2>
-            <div className="mt-4 mx-auto w-12 h-1 bg-[#1B5E20] rounded-full" />
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white">
-              <div className="h-1.5 bg-[#1B5E20]" />
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs text-[#1B5E20] font-medium bg-[#1B5E20]/5 px-3 py-1 rounded-full">2026年4月</span>
-                  <span className="text-xs text-gray-400">📍 Marina Bay</span>
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">2026 春季校友聚会</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">一年一度的春季大聚会，叙旧情、话发展。欢迎所有在新北理校友携家属参加。</p>
-              </div>
-            </div>
-            <div className="rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white">
-              <div className="h-1.5 bg-[#C62828]" />
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs text-[#C62828] font-medium bg-[#C62828]/5 px-3 py-1 rounded-full">2026年5月</span>
-                  <span className="text-xs text-gray-400">💻 Zoom 线上</span>
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">AI 前沿技术讲座</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">邀请在新校友中的行业专家分享人工智能与半导体领域的前沿发展与职业机遇。</p>
-              </div>
-            </div>
-            <div className="rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white">
-              <div className="h-1.5 bg-[#8B4513]" />
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs text-[#8B4513] font-medium bg-[#8B4513]/5 px-3 py-1 rounded-full">2026年6月</span>
-                  <span className="text-xs text-gray-400">🐉 Kallang River</span>
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">端午龙舟观赛 & 聚餐</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">组织校友共同观看新加坡河上龙舟赛，赛后品尝地道家乡粽子，共度佳节。</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========== 联系方式 - 鱼尾狮做背景 ========== */}
-      <section id="contact" className="relative py-24 overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="/images/sg-merlion.jpg"
-            alt="Singapore Merlion"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-[#1B5E20]/85" />
-        </div>
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0)',
-          backgroundSize: '40px 40px'
-        }} />
-
-        <div className="max-w-5xl mx-auto px-6 text-center relative">
-          <img src="/images/bit-badge.png" alt="BIT" className="w-14 h-14 mx-auto mb-5 brightness-200 drop-shadow-lg" />
-          <p className="text-xs font-medium text-white/50 uppercase tracking-[0.3em] mb-3">Contact Us</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3 drop-shadow">联系我们</h2>
-          <p className="text-sm text-white/40 mb-8">加入校友会 · 共建狮城北理家园</p>
-          <p className="text-white/60 max-w-lg mx-auto mb-10 text-sm leading-relaxed">
-            如果您是北京理工大学校友，正在新加坡或即将前往新加坡，欢迎与我们联系，加入校友会大家庭。
-          </p>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-5">
-            <div className="bg-white/10 border border-white/20 rounded-xl px-8 py-5 text-white backdrop-blur-sm hover:bg-white/15 transition-colors">
-              <div className="text-xs text-white/50 mb-1">电子邮箱</div>
-              <div className="font-medium text-sm">alumni-sg@bit.edu.cn</div>
-            </div>
-            <div className="bg-white/10 border border-white/20 rounded-xl px-8 py-5 text-white backdrop-blur-sm hover:bg-white/15 transition-colors">
-              <div className="text-xs text-white/50 mb-1">微信公众号</div>
-              <div className="font-medium text-sm">BIT新加坡校友会</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========== 页脚 ========== */}
-      <footer className="bg-[#0E3B1E] py-8">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <img src="/images/bit-badge.png" alt="BIT" className="w-6 h-6 opacity-40" />
-              <p className="text-xs text-white/30">
-                &copy; {new Date().getFullYear()} 北京理工大学新加坡校友会 · BIT Singapore Alumni Association
-              </p>
-            </div>
-            <Link href="/admin/dashboard" className="text-xs text-white/20 hover:text-white/40 transition-colors">
+          <div className="flex items-center justify-center gap-4 text-sm text-[var(--bit-muted)] md:justify-end">
+            <a href="mailto:alumni-sg@bit.edu.cn" className="transition-colors hover:text-[var(--bit-forest)]">
+              alumni-sg@bit.edu.cn
+            </a>
+            <Link href="/admin/dashboard" className="transition-colors hover:text-[var(--bit-forest)]">
               管理后台
             </Link>
           </div>

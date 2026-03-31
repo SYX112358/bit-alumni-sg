@@ -62,7 +62,7 @@ export default function FinancePage() {
             <select
               name="alumni_id"
               required
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#003366]/20 focus:border-[#003366] bg-white"
+              className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-[var(--bit-forest)] focus:outline-none focus:ring-2 focus:ring-[color:rgba(18,58,36,0.14)]"
             >
               <option value="">-- 请选择校友 --</option>
               {alumniList.map((a) => (
@@ -81,7 +81,7 @@ export default function FinancePage() {
               min="0.01"
               required
               placeholder="0.00"
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#003366]/20 focus:border-[#003366]"
+              className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-[var(--bit-forest)] focus:outline-none focus:ring-2 focus:ring-[color:rgba(18,58,36,0.14)]"
             />
           </div>
           <div>
@@ -89,7 +89,7 @@ export default function FinancePage() {
             <select
               name="type"
               required
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#003366]/20 focus:border-[#003366] bg-white"
+              className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-[var(--bit-forest)] focus:outline-none focus:ring-2 focus:ring-[color:rgba(18,58,36,0.14)]"
             >
               <option value="">-- 请选择类型 --</option>
               <option value="会费">会费</option>
@@ -103,7 +103,7 @@ export default function FinancePage() {
               type="date"
               required
               defaultValue={new Date().toISOString().split('T')[0]}
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#003366]/20 focus:border-[#003366]"
+              className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-[var(--bit-forest)] focus:outline-none focus:ring-2 focus:ring-[color:rgba(18,58,36,0.14)]"
             />
           </div>
           <div className="md:col-span-2">
@@ -112,13 +112,13 @@ export default function FinancePage() {
               name="remark"
               type="text"
               placeholder="可选备注信息..."
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#003366]/20 focus:border-[#003366]"
+              className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-[var(--bit-forest)] focus:outline-none focus:ring-2 focus:ring-[color:rgba(18,58,36,0.14)]"
             />
           </div>
           <div className="md:col-span-2">
             <button
               type="submit"
-              className="px-6 py-2.5 bg-[#003366] text-white rounded-lg text-sm font-medium hover:bg-[#002244] transition-colors"
+              className="rounded-lg bg-[var(--bit-forest)] px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[var(--bit-forest-strong)]"
             >
               确认录入
             </button>
