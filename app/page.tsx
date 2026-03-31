@@ -1,54 +1,102 @@
 import Link from 'next/link';
 
-/* ──────── 新加坡天际线 SVG（Marina Bay Sands + 鱼尾狮 + 摩天轮 + 建筑群） ──────── */
-function SkylineSVG({ className = '', color = '#1B5E20' }: { className?: string; color?: string }) {
+/* ──────── 新加坡天际线 SVG（增强版 - 更丰富的地标细节） ──────── */
+function SkylineSVG({ className = '', color = '#1B5E20', opacity = 1 }: { className?: string; color?: string; opacity?: number }) {
   return (
-    <svg viewBox="0 0 1200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} preserveAspectRatio="none">
-      {/* Marina Bay Sands */}
-      <rect x="300" y="60" width="20" height="140" rx="2" fill={color} />
-      <rect x="340" y="50" width="20" height="150" rx="2" fill={color} />
-      <rect x="380" y="60" width="20" height="140" rx="2" fill={color} />
-      <path d="M290 55 Q350 30 410 55" stroke={color} strokeWidth="8" fill="none" strokeLinecap="round" />
-      <ellipse cx="350" cy="42" rx="70" ry="6" fill={color} />
-      {/* Merlion 鱼尾狮 */}
-      <path d="M520 200 L520 140 Q520 120 530 115 Q540 110 535 95 Q530 80 540 75 L545 72 Q535 65 540 55 Q545 50 550 55 Q555 60 555 55 Q558 48 562 55 Q565 60 568 55 Q573 48 575 55 Q578 63 570 68 L575 72 Q585 78 580 95 Q575 110 585 115 Q595 120 595 140 L595 200"
-            fill={color} />
-      {/* 水花 */}
-      <path d="M540 95 Q520 85 500 95 Q490 100 480 90" stroke={color} strokeWidth="3" fill="none" strokeLinecap="round" />
-      <path d="M538 100 Q515 92 495 102" stroke={color} strokeWidth="2" fill="none" strokeLinecap="round" />
+    <svg viewBox="0 0 1400 220" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} preserveAspectRatio="none" opacity={opacity}>
       {/* Singapore Flyer 摩天轮 */}
-      <circle cx="180" cy="120" r="60" stroke={color} strokeWidth="3" fill="none" />
-      <line x1="180" y1="180" x2="180" y2="200" stroke={color} strokeWidth="4" />
-      <line x1="160" y1="200" x2="200" y2="200" stroke={color} strokeWidth="4" />
-      <circle cx="180" cy="60" r="4" fill={color} />
-      <circle cx="240" cy="120" r="4" fill={color} />
-      <circle cx="120" cy="120" r="4" fill={color} />
-      <circle cx="180" cy="180" r="4" fill={color} />
-      <circle cx="222" cy="78" r="4" fill={color} />
-      <circle cx="138" cy="78" r="4" fill={color} />
-      <circle cx="222" cy="162" r="4" fill={color} />
-      <circle cx="138" cy="162" r="4" fill={color} />
-      {/* CBD 建筑群 */}
-      <rect x="650" y="90" width="30" height="110" rx="1" fill={color} />
-      <rect x="690" y="70" width="25" height="130" rx="1" fill={color} />
-      <rect x="725" y="100" width="35" height="100" rx="1" fill={color} />
-      <rect x="770" y="60" width="20" height="140" rx="1" fill={color} />
-      <rect x="800" y="80" width="28" height="120" rx="1" fill={color} />
-      <rect x="840" y="110" width="22" height="90" rx="1" fill={color} />
-      {/* Esplanade 榴莲壳 */}
-      <ellipse cx="900" cy="160" rx="40" ry="30" fill={color} />
-      <ellipse cx="960" cy="160" rx="35" ry="28" fill={color} />
-      <path d="M870 160 Q900 130 930 160" stroke="white" strokeWidth="1" fill="none" opacity="0.3" />
-      <path d="M935 160 Q960 135 985 160" stroke="white" strokeWidth="1" fill="none" opacity="0.3" />
-      {/* Supertrees */}
-      <line x1="1040" y1="200" x2="1040" y2="130" stroke={color} strokeWidth="4" />
-      <ellipse cx="1040" cy="125" rx="20" ry="12" fill={color} />
-      <line x1="1090" y1="200" x2="1090" y2="110" stroke={color} strokeWidth="5" />
-      <ellipse cx="1090" cy="105" rx="25" ry="14" fill={color} />
-      <line x1="1130" y1="200" x2="1130" y2="140" stroke={color} strokeWidth="3" />
-      <ellipse cx="1130" cy="135" rx="16" ry="10" fill={color} />
-      {/* 地面线 */}
-      <line x1="0" y1="200" x2="1200" y2="200" stroke={color} strokeWidth="2" />
+      <circle cx="100" cy="110" r="65" stroke={color} strokeWidth="2.5" fill="none" />
+      <line x1="100" y1="175" x2="100" y2="220" stroke={color} strokeWidth="3" />
+      <line x1="75" y1="220" x2="125" y2="220" stroke={color} strokeWidth="3" />
+      {/* 摩天轮轮毂 */}
+      <circle cx="100" cy="110" r="3" fill={color} />
+      {/* 吊舱 */}
+      {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
+        <circle key={i} cx={100 + 65 * Math.cos((angle * Math.PI) / 180)} cy={110 + 65 * Math.sin((angle * Math.PI) / 180)} r="4" fill={color} />
+      ))}
+
+      {/* Marina Bay Sands 金沙酒店 - 更精致 */}
+      <rect x="280" y="65" width="18" height="155" rx="3" fill={color} />
+      <rect x="315" y="50" width="18" height="170" rx="3" fill={color} />
+      <rect x="350" y="65" width="18" height="155" rx="3" fill={color} />
+      {/* 顶部船型空中花园 */}
+      <path d="M265 58 Q324 25 383 58" stroke={color} strokeWidth="6" fill="none" strokeLinecap="round" />
+      <ellipse cx="324" cy="43" rx="68" ry="8" fill={color} />
+      {/* 无边泳池示意 */}
+      <rect x="290" y="38" width="68" height="4" rx="2" fill={color} opacity="0.5" />
+
+      {/* ArtScience Museum 艺术科学博物馆 - 莲花造型 */}
+      <path d="M430 220 L430 175 Q430 155 445 145 Q460 170 460 145 Q475 155 475 175 L475 220" fill={color} />
+      <path d="M440 145 Q452 120 465 145" stroke={color} strokeWidth="2" fill="none" />
+      <path d="M435 155 Q452 128 470 155" stroke={color} strokeWidth="1.5" fill="none" />
+
+      {/* Merlion 鱼尾狮 - 更大更醒目 */}
+      <g transform="translate(530, 0)">
+        {/* 鱼尾狮身体 */}
+        <path d="M30 220 L30 145 Q30 125 40 118 Q48 112 45 98 Q42 82 50 75 L55 70 Q46 62 50 50 Q54 42 60 48 Q64 52 64 46 Q68 38 72 46 Q76 52 76 46 Q80 38 84 48 Q88 55 82 62 L87 70 Q95 78 90 98 Q87 112 95 118 Q105 125 105 145 L105 220" fill={color} />
+        {/* 水花 - 三层 */}
+        <path d="M50 95 Q30 82 10 95 Q0 102 -12 88" stroke={color} strokeWidth="3" fill="none" strokeLinecap="round" />
+        <path d="M48 102 Q25 90 5 105" stroke={color} strokeWidth="2.5" fill="none" strokeLinecap="round" />
+        <path d="M46 108 Q28 100 12 112" stroke={color} strokeWidth="2" fill="none" strokeLinecap="round" />
+        {/* 皇冠 */}
+        <path d="M52 50 L56 42 L60 48 L64 40 L68 48 L72 42 L76 50" stroke={color} strokeWidth="1.5" fill="none" />
+      </g>
+
+      {/* CBD 建筑群 - 高低错落 */}
+      <rect x="700" y="85" width="28" height="135" rx="1" fill={color} />
+      <rect x="735" y="60" width="22" height="160" rx="1" fill={color} />
+      <rect x="765" y="95" width="32" height="125" rx="1" fill={color} />
+      <rect x="805" y="50" width="18" height="170" rx="1" fill={color} />
+      <rect x="830" y="75" width="25" height="145" rx="1" fill={color} />
+      <rect x="862" y="105" width="20" height="115" rx="1" fill={color} />
+      {/* 小窗户 */}
+      <rect x="708" y="95" width="4" height="3" rx="0.5" fill="white" opacity="0.15" />
+      <rect x="708" y="105" width="4" height="3" rx="0.5" fill="white" opacity="0.15" />
+      <rect x="740" y="70" width="4" height="3" rx="0.5" fill="white" opacity="0.15" />
+      <rect x="740" y="80" width="4" height="3" rx="0.5" fill="white" opacity="0.15" />
+
+      {/* Esplanade 榴莲壳 - 更精细 */}
+      <ellipse cx="950" cy="170" rx="42" ry="32" fill={color} />
+      <ellipse cx="1015" cy="170" rx="38" ry="30" fill={color} />
+      {/* 三角形纹理 */}
+      <path d="M920 170 Q950 138 980 170" stroke="white" strokeWidth="1" fill="none" opacity="0.2" />
+      <path d="M930 175 Q950 150 970 175" stroke="white" strokeWidth="1" fill="none" opacity="0.15" />
+      <path d="M988 170 Q1015 140 1042 170" stroke="white" strokeWidth="1" fill="none" opacity="0.2" />
+      <path d="M996 175 Q1015 152 1034 175" stroke="white" strokeWidth="1" fill="none" opacity="0.15" />
+
+      {/* Gardens by the Bay - Supertrees 超级树 */}
+      <line x1="1120" y1="220" x2="1120" y2="125" stroke={color} strokeWidth="5" />
+      <ellipse cx="1120" cy="120" rx="24" ry="14" fill={color} />
+      <path d="M1100 130 Q1120 110 1140 130" stroke={color} strokeWidth="1.5" fill="none" />
+
+      <line x1="1180" y1="220" x2="1180" y2="100" stroke={color} strokeWidth="6" />
+      <ellipse cx="1180" cy="94" rx="28" ry="16" fill={color} />
+      <path d="M1156 106 Q1180 82 1204 106" stroke={color} strokeWidth="1.5" fill="none" />
+
+      <line x1="1230" y1="220" x2="1230" y2="140" stroke={color} strokeWidth="4" />
+      <ellipse cx="1230" cy="135" rx="18" ry="11" fill={color} />
+
+      {/* Supertree 之间的空中走廊 */}
+      <path d="M1120 122 Q1150 112 1180 96" stroke={color} strokeWidth="1.5" fill="none" strokeDasharray="4 3" />
+
+      {/* Helix Bridge 螺旋桥 */}
+      <path d="M440 218 Q480 208 520 218" stroke={color} strokeWidth="2" fill="none" />
+      <path d="M445 218 Q480 210 515 218" stroke={color} strokeWidth="1" fill="none" strokeDasharray="3 2" />
+
+      {/* 水面反射 */}
+      <line x1="0" y1="220" x2="1400" y2="220" stroke={color} strokeWidth="1.5" />
+      <path d="M0 220 Q350 215 700 220 Q1050 225 1400 220" stroke={color} strokeWidth="0.5" fill="none" opacity="0.4" />
+    </svg>
+  );
+}
+
+/* ──────── 鱼尾狮独立图标 ──────── */
+function MerlionIcon({ className = '', color = '#1B5E20' }: { className?: string; color?: string }) {
+  return (
+    <svg viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+      <path d="M30 95 L30 55 Q30 40 38 35 Q44 30 42 20 Q40 10 46 6 Q50 2 54 8 Q57 12 57 8 Q60 2 64 8 Q67 14 62 18 L65 22 Q72 28 68 42 Q65 50 72 55 Q80 60 80 70 L80 95" fill={color} />
+      <path d="M42 20 Q28 12 15 22 Q8 28 0 18" stroke={color} strokeWidth="2.5" fill="none" strokeLinecap="round" />
+      <path d="M40 26 Q24 20 12 30" stroke={color} strokeWidth="2" fill="none" strokeLinecap="round" />
     </svg>
   );
 }
@@ -79,41 +127,36 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* ========== Hero 区域 ========== */}
-      <section className="relative pt-16 min-h-[95vh] flex items-center overflow-hidden bg-gradient-to-b from-white via-white to-[#f0f7f0]">
-        {/* 微妙背景 */}
+      {/* ========== Hero 区域 - 重新设计 ========== */}
+      <section className="relative pt-16 min-h-[95vh] flex items-center overflow-hidden bg-gradient-to-b from-white via-[#f8fbf8] to-[#eef5ee]">
+        {/* 微妙背景圆 */}
         <div className="absolute inset-0">
           <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-[#1B5E20]/[0.02] rounded-full translate-x-1/4" />
-          <div className="absolute top-40 left-0 w-[400px] h-[400px] bg-[#C62828]/[0.015] rounded-full -translate-x-1/3" />
+          <div className="absolute top-60 left-0 w-[400px] h-[400px] bg-[#C62828]/[0.015] rounded-full -translate-x-1/3" />
         </div>
 
-        <div className="relative max-w-6xl mx-auto px-6 py-12 w-full">
+        <div className="relative max-w-6xl mx-auto px-6 py-8 w-full">
           <div className="flex flex-col items-center text-center">
-            {/* 横版 LOGO */}
-            <img src="/images/bit-logo.png" alt="北京理工大学" className="h-16 md:h-20 mb-8 object-contain" />
+            {/* 顶部：横版 LOGO（缩小一点避免压迫感） */}
+            <img src="/images/bit-logo.png" alt="北京理工大学" className="h-12 md:h-14 mb-10 object-contain" />
 
-            {/* 校徽 + 新加坡天际线组合 */}
-            <div className="relative w-full max-w-2xl mb-6">
-              {/* 天际线做背景装饰 */}
-              <SkylineSVG className="w-full h-auto opacity-[0.06]" color="#1B5E20" />
-              {/* 校徽居中浮于天际线上 */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative">
-                  <div className="absolute -inset-3 rounded-full bg-white shadow-lg" />
-                  <img src="/images/bit-badge.png" alt="北京理工大学校徽" className="relative w-32 h-32 md:w-40 md:h-40" />
-                </div>
-              </div>
+            {/* 校徽 - 独立展示，不叠在天际线上 */}
+            <div className="relative mb-6">
+              <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-[#1B5E20]/5 to-[#C62828]/5" />
+              <div className="absolute -inset-2 rounded-full bg-white shadow-lg" />
+              <img src="/images/bit-badge.png" alt="北京理工大学校徽" className="relative w-28 h-28 md:w-32 md:h-32" />
             </div>
 
+            {/* 标题 - 与校徽分开，留足空间 */}
             <h1 className="text-3xl md:text-5xl font-bold text-[#1B5E20] mb-2 tracking-tight">
               新加坡校友会
             </h1>
-            <p className="text-sm md:text-base text-gray-400 mb-8 tracking-widest uppercase">
+            <p className="text-sm md:text-base text-gray-400 mb-6 tracking-widest uppercase">
               Singapore Alumni Association
             </p>
 
             {/* 校训 */}
-            <div id="motto" className="mb-8">
+            <div className="mb-8">
               <div className="relative">
                 <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-[#1B5E20]/20 via-[#C62828]/20 to-[#1B5E20]/20" />
                 <div className="relative bg-white rounded-2xl px-10 py-5">
@@ -127,12 +170,12 @@ export default function HomePage() {
               </div>
             </div>
 
-            <p className="text-gray-400 text-sm max-w-md leading-relaxed mb-10">
+            <p className="text-gray-400 text-sm max-w-md leading-relaxed mb-8">
               汇聚狮城北理人，传承延安精神，共创美好未来
             </p>
 
-            {/* 三指标 - 带图标 */}
-            <div className="flex items-center gap-6 md:gap-10">
+            {/* 三指标 */}
+            <div className="flex items-center gap-6 md:gap-10 mb-10">
               <div className="text-center">
                 <div className="text-2xl md:text-3xl font-bold text-[#C62828]">1940</div>
                 <div className="text-[10px] text-gray-400 mt-1 tracking-wider">延安建校</div>
@@ -144,13 +187,19 @@ export default function HomePage() {
               </div>
               <div className="w-px h-10 bg-gray-200" />
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-[#8B4513]">🇸🇬</div>
+                <div className="text-2xl md:text-3xl font-bold text-[#8B4513]">SG</div>
                 <div className="text-[10px] text-gray-400 mt-1 tracking-wider">Lion City</div>
               </div>
             </div>
           </div>
         </div>
 
+        {/* 新加坡天际线 - 放在 Hero 底部，可见度提高 */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <SkylineSVG className="w-full h-[120px] md:h-[160px]" color="#1B5E20" opacity={0.1} />
+        </div>
+
+        {/* 红绿渐变分割线 */}
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#C62828] via-[#1B5E20] to-[#C62828]" />
       </section>
 
@@ -190,7 +239,7 @@ export default function HomePage() {
                 <div className="text-xs text-gray-500 mt-1">双一流高校</div>
               </div>
               <div className="bg-white rounded-xl p-5 text-center border border-[#1B5E20]/10 shadow-sm hover:shadow-md transition-shadow">
-                <img src="/images/bit-badge.png" alt="BIT" className="w-10 h-10 mx-auto mb-1" />
+                <MerlionIcon className="w-10 h-12 mx-auto mb-1" color="#1B5E20" />
                 <div className="text-xs text-gray-500">狮城分会</div>
               </div>
             </div>
@@ -200,7 +249,12 @@ export default function HomePage() {
 
       {/* ========== 北京 × 新加坡 双城桥梁 ========== */}
       <section id="bridge" className="py-20 bg-white relative overflow-hidden">
-        <div className="max-w-5xl mx-auto px-6">
+        {/* 微弱天际线背景 */}
+        <div className="absolute top-0 left-0 right-0 opacity-[0.03]">
+          <SkylineSVG className="w-full h-[100px]" color="#1B5E20" />
+        </div>
+
+        <div className="max-w-5xl mx-auto px-6 relative">
           <div className="text-center mb-14">
             <p className="text-xs font-medium text-[#C62828] uppercase tracking-[0.3em] mb-3">Beijing × Singapore</p>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">双城桥梁</h2>
@@ -262,6 +316,61 @@ export default function HomePage() {
             <div className="flex items-center gap-2 bg-[#1B5E20]/5 rounded-full px-5 py-2">
               <span className="text-lg">🇸🇬</span>
               <span className="text-sm font-medium text-[#1B5E20]">新加坡</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== 新加坡地标展示条 ========== */}
+      <section className="py-12 bg-gradient-to-r from-[#1B5E20] to-[#14472A] relative overflow-hidden">
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0)',
+          backgroundSize: '30px 30px'
+        }} />
+        <div className="max-w-6xl mx-auto px-6 relative">
+          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14 text-white/70 text-sm">
+            <div className="flex flex-col items-center gap-2">
+              <svg viewBox="0 0 40 40" className="w-8 h-8" fill="none">
+                <circle cx="20" cy="16" r="14" stroke="white" strokeWidth="1.5" fill="none" opacity="0.6" />
+                <line x1="20" y1="30" x2="20" y2="38" stroke="white" strokeWidth="1.5" opacity="0.6" />
+              </svg>
+              <span className="text-xs text-white/50">Singapore Flyer</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <svg viewBox="0 0 40 40" className="w-8 h-8" fill="none">
+                <rect x="10" y="10" width="5" height="28" rx="1" fill="white" opacity="0.6" />
+                <rect x="17" y="5" width="5" height="33" rx="1" fill="white" opacity="0.6" />
+                <rect x="24" y="10" width="5" height="28" rx="1" fill="white" opacity="0.6" />
+                <path d="M8 8 Q19 0 31 8" stroke="white" strokeWidth="1.5" fill="none" opacity="0.6" />
+              </svg>
+              <span className="text-xs text-white/50">Marina Bay Sands</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <MerlionIcon className="w-8 h-8" color="rgba(255,255,255,0.6)" />
+              <span className="text-xs text-white/50">Merlion</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <svg viewBox="0 0 40 40" className="w-8 h-8" fill="none">
+                <ellipse cx="14" cy="28" rx="12" ry="9" fill="white" opacity="0.6" />
+                <ellipse cx="28" cy="28" rx="10" ry="8" fill="white" opacity="0.6" />
+              </svg>
+              <span className="text-xs text-white/50">Esplanade</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <svg viewBox="0 0 40 40" className="w-8 h-8" fill="none">
+                <line x1="12" y1="38" x2="12" y2="18" stroke="white" strokeWidth="2" opacity="0.6" />
+                <ellipse cx="12" cy="16" rx="8" ry="4" fill="white" opacity="0.6" />
+                <line x1="28" y1="38" x2="28" y2="12" stroke="white" strokeWidth="2.5" opacity="0.6" />
+                <ellipse cx="28" cy="10" rx="10" ry="5" fill="white" opacity="0.6" />
+              </svg>
+              <span className="text-xs text-white/50">Supertree Grove</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <svg viewBox="0 0 40 40" className="w-8 h-8" fill="none">
+                <path d="M10 38 L10 20 Q20 10 30 20 L30 38" fill="white" opacity="0.6" />
+                <path d="M15 20 Q20 14 25 20" stroke="white" strokeWidth="1" fill="none" opacity="0.4" />
+              </svg>
+              <span className="text-xs text-white/50">ArtScience Museum</span>
             </div>
           </div>
         </div>
@@ -330,9 +439,9 @@ export default function HomePage() {
 
       {/* ========== 联系方式 ========== */}
       <section id="contact" className="relative py-24 bg-[#1B5E20] overflow-hidden">
-        {/* 天际线剪影做底部装饰 */}
+        {/* 天际线剪影做底部装饰 - 更明显 */}
         <div className="absolute bottom-0 left-0 right-0">
-          <SkylineSVG className="w-full h-auto" color="rgba(255,255,255,0.06)" />
+          <SkylineSVG className="w-full h-auto" color="rgba(255,255,255,0.08)" />
         </div>
         {/* 点阵 */}
         <div className="absolute inset-0" style={{
