@@ -12,6 +12,8 @@ const config: Config = {
         'bit-dark': '#002244',
         'bit-red': '#8B0000',
         'bit-gold': '#C4A35A',
+        'bit-brown': '#8B4513',
+        'bit-green': '#2D8B2D',
       },
     },
   },
